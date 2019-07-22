@@ -23,6 +23,6 @@ do
  session=$( curl -s -H "Authorization: LSBasic ${b64auth}" -H "Content-Type: application/json" http://$ip/rest/new | awk -F\" '/session/ { print $4 }' 2> /dev/null )
 # echo "SESSION is ${session}"
 
- curl -H "Authorization: LSBasic ${b64auth}" -H "Content-Type: application/json" --data '{"call":"Gui_setAutoreboot","params":{ "mode":"on","hour":"5","minute":"0","second":"0"}}' http://${ip}/rest/request/${session} > /dev/null 
+ curl -s -H "Authorization: LSBasic ${b64auth}" -H "Content-Type: application/json" --data '{"call":"Gui_setAutoreboot","params":{ "mode":"on","hour":"5","minute":"0","second":"0"}}' http://${ip}/rest/request/${session} > /dev/null 
 done <"temp"
 rm temp
